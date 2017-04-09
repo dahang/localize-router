@@ -1,5 +1,5 @@
 import {Injector} from '@angular/core';
-import {XHRBackend, HttpModule} from '@angular/http';
+import {ConnectionBackend, HttpModule} from '@angular/http';
 import {MockBackend, MockConnection} from '@angular/http/testing';
 import {LocalizeRouterService} from '../src/localize-router.service';
 import {LocalizeParser} from '../src/localize-router.parser';
@@ -63,14 +63,14 @@ describe('LocalizeRouterService', () => {
     TestBed.configureTestingModule({
       imports: [HttpModule, CommonModule, LocalizeRouterModule.forRoot(routes)],
       providers: [
-        {provide: XHRBackend, useClass: MockBackend},
+        {provide: ConnectionBackend, useClass: MockBackend},
         {provide: Router, useClass: FakeRouter},
         {provide: TranslateService, useClass: FakeTranslateService},
         {provide: Location, useClass: FakeLocation}
       ]
     });
     injector = getTestBed();
-    backend = injector.get(XHRBackend);
+    backend = injector.get(ConnectionBackend);
     parser = injector.get(LocalizeParser);
     router = injector.get(Router);
     // sets the connection when someone tries to access the backend with an xhr request

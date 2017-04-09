@@ -1,6 +1,7 @@
 import { NgModule }             from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AboutComponent } from './about/about.component';
+import { LocalizeRouterModule } from '../../../../../src/localize-router.module';
 
 const aboutRoutes: Routes = [
   { path: 'about',  component: AboutComponent },
@@ -8,6 +9,7 @@ const aboutRoutes: Routes = [
 
 @NgModule({
   imports: [
+    LocalizeRouterModule.forChild(aboutRoutes),
     RouterModule.forChild(aboutRoutes)
   ],
   exports: [
